@@ -1,6 +1,6 @@
-package org.petschko.lib.gui;
+package org.trentontelge.lib.gui;
 
-import com.sun.istack.internal.Nullable;
+import com.sun.istack.Nullable;
 
 import javax.swing.JLabel;
 import java.awt.Color;
@@ -77,7 +77,7 @@ public class JLabelExtra extends JLabel {
 	 *
 	 * @param color - new Color for the Text or null for default
 	 */
-	public void setTextColor(@Nullable Color color) {
+	private void setTextColor(@Nullable Color color) {
 		if(color == null) {
 			this.setForeground(new JLabel().getForeground());
 			return;

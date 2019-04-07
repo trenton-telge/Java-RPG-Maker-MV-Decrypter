@@ -1,7 +1,7 @@
-package org.petschko.lib.gui;
+package org.trentontelge.lib.gui;
 
-import com.sun.istack.internal.NotNull;
-import org.petschko.lib.Image;
+import com.sun.istack.NotNull;
+import org.trentontelge.lib.Image;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -68,7 +68,7 @@ public class JImageLabel extends JLabel {
 	 *
 	 * @param image - new BufferedImage
 	 */
-	public void setImage(BufferedImage image) {
+	private void setImage(BufferedImage image) {
 		this.image = image;
 		this.createImagePanel();
 	}
@@ -78,7 +78,7 @@ public class JImageLabel extends JLabel {
 	 *
 	 * @param file - File Pointing to the Image
 	 */
-	public void setImage(java.io.File file) {
+	private void setImage(java.io.File file) {
 		this.setBufferedImage(file);
 	}
 
@@ -88,7 +88,7 @@ public class JImageLabel extends JLabel {
 	 * @param imagePath - Path or Class-Path
 	 * @param useURL - true uses Class-Path instead of a Path
 	 */
-	public void setImage(@NotNull String imagePath, boolean useURL) {
+	private void setImage(@NotNull String imagePath, boolean useURL) {
 		if(useURL) {
 			this.setBufferedImage(getClass().getResource(imagePath));
 		} else {

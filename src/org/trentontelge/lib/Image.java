@@ -1,4 +1,4 @@
-package org.petschko.lib;
+package org.trentontelge.lib;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -15,7 +15,7 @@ import java.awt.image.BufferedImage;
  * Notes: Image Class
  */
 public class Image {
-	private BufferedImage bufferedImage = null;
+	private BufferedImage bufferedImage;
 
 	/**
 	 * Image constructor
@@ -78,7 +78,7 @@ public class Image {
 	 * @return - New Picture (transparency)
 	 * @throws NumberFormatException - Invalid-Values
 	 */
-	public static BufferedImage drawNewPicture(int x, int y) throws NumberFormatException {
+	private static BufferedImage drawNewPicture(int x, int y) throws NumberFormatException {
 		if (x <= 0 || y <= 0)
 			throw new NumberFormatException("drawNewPicture: x and y can't be <= 0!");
 

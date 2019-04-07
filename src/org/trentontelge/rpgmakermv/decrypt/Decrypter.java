@@ -1,9 +1,11 @@
-package org.petschko.rpgmakermv.decrypt;
+package org.trentontelge.rpgmakermv.decrypt;
 
-import com.sun.istack.internal.NotNull;
+import com.sun.istack.NotNull;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.petschko.lib.File;
+import org.trentontelge.lib.File;
+
+import java.nio.charset.StandardCharsets;
 import java.nio.file.FileSystemException;
 import java.util.ArrayList;
 
@@ -60,7 +62,7 @@ class Decrypter {
 	 *
 	 * @param decryptCode - Decrypt-Code
 	 */
-	void setDecryptCode(@NotNull String decryptCode) {
+	private void setDecryptCode(@NotNull String decryptCode) {
 		this.decryptCode = decryptCode;
 	}
 
@@ -90,7 +92,7 @@ class Decrypter {
 	 *
 	 * @return - File-Header Length in Bytes
 	 */
-	int getHeaderLen() {
+	private int getHeaderLen() {
 		return headerLen;
 	}
 
@@ -108,7 +110,7 @@ class Decrypter {
 	 *
 	 * @return - Signature
 	 */
-	String getSignature() {
+	private String getSignature() {
 		return signature;
 	}
 
@@ -144,7 +146,7 @@ class Decrypter {
 	 *
 	 * @return - Remain
 	 */
-	String getRemain() {
+	private String getRemain() {
 		return remain;
 	}
 
@@ -162,7 +164,7 @@ class Decrypter {
 	 *
 	 * @return - true if Fake-Header should be ignored else false
 	 */
-	boolean isIgnoreFakeHeader() {
+	private boolean isIgnoreFakeHeader() {
 		return ignoreFakeHeader;
 	}
 
@@ -193,7 +195,7 @@ class Decrypter {
 				verifiedDecryptArray.add(aDecryptArray);
 		}
 
-		this.setRealDecryptCode(verifiedDecryptArray.toArray(new String[verifiedDecryptArray.size()]));
+		this.setRealDecryptCode(verifiedDecryptArray.toArray(new String[0]));
 	}
 
 	/**
@@ -204,7 +206,7 @@ class Decrypter {
 	 */
 	void decryptFile(File file) throws Exception {
 		try {
-			if(! file.load())
+			if(file.load())
 				throw new FileSystemException(file.getFilePath(), "", "Can't load File-Content...");
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -249,7 +251,7 @@ class Decrypter {
 	 * @param content - File-Content as Byte-Array
 	 * @return - true if the header is valid else false
 	 */
-	boolean checkFakeHeader(byte[] content) {
+	private boolean checkFakeHeader(byte[] content) {
 		byte[] header = Decrypter.getByteArray(content, 0, this.getHeaderLen());
 		byte[] refBytes = new byte[this.getHeaderLen()];
 		String refStr = this.getSignature() + this.getVersion() + this.getRemain();
@@ -280,7 +282,7 @@ class Decrypter {
 	 */
 	void detectEncryptionKey(File file, String keyName) throws JSONException, NullPointerException, FileSystemException {
 		try {
-			if(! file.load())
+			if(file.load())
 				throw new FileSystemException(file.getFilePath(), "", "Can't load File-Content...");
 		} catch(NullPointerException nullEx) {
 			throw new NullPointerException("System-File is not set!");
@@ -294,7 +296,7 @@ class Decrypter {
 		String key;
 
 		try {
-			String fileContentAsString = new String(file.getContent(), "UTF-8");
+			String fileContentAsString = new String(file.getContent(), StandardCharsets.UTF_8);
 			jsonObj = new JSONObject(fileContentAsString);
 		} catch(Exception e) {
 			e.printStackTrace();

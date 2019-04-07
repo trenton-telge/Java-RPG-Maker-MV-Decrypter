@@ -1,9 +1,8 @@
-package org.petschko.rpgmakermv.decrypt;
+package org.trentontelge.rpgmakermv.decrypt;
 
-import com.sun.istack.internal.NotNull;
+import com.sun.istack.NotNull;
 import org.json.JSONException;
-import org.petschko.lib.File;
-import sun.dc.path.PathException;
+import org.trentontelge.lib.File;
 import java.util.ArrayList;
 
 /**
@@ -30,18 +29,18 @@ class RPGProject {
 	 *
 	 * @param path - Path to the RPG-Maker-Project
 	 * @param verifyRPGDir - true if the RPG-Maker-Directory should verified
-	 * @throws PathException - Path doesn't exists/Not Valid-Dir exception
+	 * @throws Exception - Path doesn't exists/Not Valid-Dir exception
 	 */
-	RPGProject(@NotNull String path, boolean verifyRPGDir) throws PathException {
-		if(! File.existsDir(path))
-			throw new PathException("Project-Path doesn't exists!");
+	RPGProject(@NotNull String path, boolean verifyRPGDir) throws Exception {
+		if(File.existsDir(path))
+			throw new Exception("Project-Path doesn't exists!");
 
 		this.setPath(path);
 
 		// Check if Path is a Valid-RPG-Maker-Dir
 		if(verifyRPGDir)
 			if(! this.verifyDir())
-				throw new PathException("Directory is not a Valid RPG-Maker-MV Directory!");
+				throw new Exception("Directory is not a Valid RPG-Maker-MV Directory!");
 
 		this.loadFiles();
 		this.findSystemFile();
@@ -76,7 +75,7 @@ class RPGProject {
 	 *
 	 * @return - Output (Save-Dir)-Path of Project
 	 */
-	String getOutputPath() {
+	private String getOutputPath() {
 		return outputPath;
 	}
 
@@ -103,7 +102,7 @@ class RPGProject {
 	 *
 	 * @param system - System-File
 	 */
-	void setSystem(@NotNull File system) {
+	private void setSystem(@NotNull File system) {
 		this.system = system;
 	}
 
@@ -121,7 +120,7 @@ class RPGProject {
 	 *
 	 * @param encryptionKeyName - EncryptionKeyName
 	 */
-	void setEncryptionKeyName(String encryptionKeyName) {
+	private void setEncryptionKeyName(String encryptionKeyName) {
 		this.encryptionKeyName = encryptionKeyName;
 	}
 
@@ -137,7 +136,7 @@ class RPGProject {
 	 *
 	 * @return - true if Project is encrypted else false
 	 */
-	boolean isEncrypted() {
+	private boolean isEncrypted() {
 		return isEncrypted;
 	}
 
@@ -155,7 +154,7 @@ class RPGProject {
 	 *
 	 * @return - File List
 	 */
-	ArrayList<File> getFiles() {
+	private ArrayList<File> getFiles() {
 		return files;
 	}
 
@@ -242,7 +241,7 @@ class RPGProject {
 	 */
 	void decryptFiles(Decrypter decrypter) throws Exception {
 		// Check if Output-Dir exists
-		if(! File.existsDir(this.getOutputPath())) {
+		if(File.existsDir(this.getOutputPath())) {
 			App.showMessage("Output-dir \"" + this.getOutputPath() + "\" doesn't exists!");
 			return;
 		}
@@ -315,7 +314,7 @@ class RPGProject {
 	 *
 	 * @param file - File to save to the Output Directory
 	 */
-	void saveFile(File file) {
+	private void saveFile(File file) {
 		saveFile(file, false);
 	}
 

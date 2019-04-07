@@ -1,4 +1,4 @@
-package org.petschko.rpgmakermv.decrypt;
+package org.trentontelge.rpgmakermv.decrypt;
 
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JMenu;
@@ -17,11 +17,11 @@ import javax.swing.JMenuItem;
  */
 class GUI_Menu extends JMenuBar {
 	// Main Menu-Points
-	JMenu file;
-	JMenu options;
+	private JMenu file;
+	private JMenu options;
 	JMenu decrypt;
-	JMenu tools;
-	JMenu info;
+	private JMenu tools;
+	private JMenu info;
 
 	// File-Menu-Sub
 	JMenuItem open;
@@ -37,18 +37,18 @@ class GUI_Menu extends JMenuBar {
 	JCheckBoxMenuItem overwriteExistingFiles;
 
 	// Decrypt-Menu-Sub
-	JMenuItem selectedFiles;
+	private JMenuItem selectedFiles;
 	JMenuItem allFiles;
-	JMenuItem setEncryptionKey;
-	JMenuItem setEncryptionFile;
-	JMenuItem changeDecrypterSignature;
+	private JMenuItem setEncryptionKey;
+	private JMenuItem setEncryptionFile;
+	private JMenuItem changeDecrypterSignature;
 
 	// Tool-Menu-Sub
-	JMenuItem restoreProject;
+	private JMenuItem restoreProject;
 	JMenuItem doClearOutputDir;
 
 	// Info-Menu-Sub
-	JMenuItem help;
+	private JMenuItem help;
 	JMenuItem reportABug;
 	JMenuItem about;
 

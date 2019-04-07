@@ -1,14 +1,13 @@
-package org.petschko.rpgmakermv.decrypt;
+package org.trentontelge.rpgmakermv.decrypt;
 
-import com.sun.istack.internal.NotNull;
+import com.sun.istack.NotNull;
 import org.json.JSONException;
-import org.petschko.lib.Const;
-import org.petschko.lib.File;
-import org.petschko.lib.Functions;
-import org.petschko.lib.gui.*;
-import org.petschko.lib.gui.notification.ErrorWindow;
-import org.petschko.lib.gui.notification.InfoWindow;
-import sun.dc.path.PathException;
+import org.trentontelge.lib.Const;
+import org.trentontelge.lib.File;
+import org.trentontelge.lib.Functions;
+import org.trentontelge.lib.gui.*;
+import org.trentontelge.lib.gui.notification.ErrorWindow;
+import org.trentontelge.lib.gui.notification.InfoWindow;
 
 import javax.swing.BorderFactory;
 import javax.swing.JDialog;
@@ -149,7 +148,7 @@ class GUI {
 				e -> {
 					String openDir = App.preferences.getConfig(Preferences.lastRPGDir, ".");
 
-					if(! File.existsDir(openDir))
+					if(File.existsDir(openDir))
 						openDir = ".";
 
 					UIManager.put("FileChooser.readOnly", Boolean.TRUE);
@@ -171,7 +170,7 @@ class GUI {
 
 					String openDir = App.preferences.getConfig(Preferences.lastOutputParentDir, ".");
 
-					if(! File.existsDir(openDir))
+					if(File.existsDir(openDir))
 						openDir = ".";
 
 					UIManager.put("FileChooser.readOnly", Boolean.TRUE);
@@ -552,7 +551,7 @@ class GUI {
 						File.ensureDSonEndOfPath(this.directoryPath),
 						! Functions.strToBool(App.preferences.getConfig(Preferences.loadInvalidRPGDirs, "false"))
 				);
-			} catch(PathException e) {
+			} catch(Exception e) {
 				ErrorWindow errorWindow = new ErrorWindow(
 						e.getMessage() + Const.newLine +
 								"You can turn on the Option \"Load invalid RPG-Dirs anyway\" if your Directory is a RPG-Dir but it not detect it correctly." + Const.newLine +
@@ -560,12 +559,6 @@ class GUI {
 						ErrorWindow.ERROR_LEVEL_WARNING,
 						false
 				);
-				errorWindow.show(mainWindow);
-
-				this.cancel(true);
-				return null;
-			} catch(Exception e) {
-				ErrorWindow errorWindow = new ErrorWindow(e.getMessage(), ErrorWindow.ERROR_LEVEL_ERROR, false);
 				errorWindow.show(mainWindow);
 
 				this.cancel(true);

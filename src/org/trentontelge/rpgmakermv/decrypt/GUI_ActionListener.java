@@ -1,9 +1,9 @@
-package org.petschko.rpgmakermv.decrypt;
+package org.trentontelge.rpgmakermv.decrypt;
 
-import com.sun.istack.internal.NotNull;
-import org.petschko.lib.File;
-import org.petschko.lib.Functions;
-import org.petschko.lib.gui.notification.ErrorWindow;
+import com.sun.istack.NotNull;
+import org.trentontelge.lib.File;
+import org.trentontelge.lib.Functions;
+import org.trentontelge.lib.gui.notification.ErrorWindow;
 
 import java.awt.Desktop;
 import java.awt.event.ActionListener;

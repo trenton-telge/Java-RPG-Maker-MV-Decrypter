@@ -1,4 +1,4 @@
-package org.petschko.lib;
+package org.trentontelge.lib;
 
 /**
  * Author: Peter Dragicevic [peter@petschko.org]

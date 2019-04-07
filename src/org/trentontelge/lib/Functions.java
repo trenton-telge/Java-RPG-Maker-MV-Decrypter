@@ -1,7 +1,7 @@
-package org.petschko.lib;
+package org.trentontelge.lib;
 
-import com.sun.istack.internal.NotNull;
-import com.sun.istack.internal.Nullable;
+import com.sun.istack.NotNull;
+import com.sun.istack.Nullable;
 
 import javax.swing.AbstractButton;
 import java.awt.Desktop;
@@ -40,7 +40,7 @@ public class Functions {
 	 *
 	 * @param uri - Target URI
 	 */
-	public static void openWebsite(URI uri) {
+	private static void openWebsite(URI uri) {
 		Desktop desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;
 
 		if(desktop == null)

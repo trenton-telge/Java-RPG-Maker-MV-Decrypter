@@ -1,7 +1,7 @@
-package org.petschko.lib;
+package org.trentontelge.lib;
 
-import com.sun.istack.internal.NotNull;
-import com.sun.istack.internal.Nullable;
+import com.sun.istack.NotNull;
+import com.sun.istack.Nullable;
 
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -58,7 +58,7 @@ public abstract class UserPref {
 	 *
 	 * @return - File-Path of the Properties File or null if not set
 	 */
-	public String getFilePath() {
+	private String getFilePath() {
 		return filePath;
 	}
 
@@ -67,21 +67,24 @@ public abstract class UserPref {
 	 *
 	 * @param filePath - File-Path of the Properties File
 	 */
-	public void setFilePath(@Nullable String filePath) {
+	private void setFilePath(@Nullable String filePath) {
 		this.filePath = filePath;
 	}
 
 	/**
 	 * Loads the Properties of the User from a File
 	 *
-	 * @return - true of Properties where loaded else false
 	 */
-	public boolean load() {
-		if(this.getFilePath() == null)
-			return this.loadDefaults();
+	private void load() {
+		if(this.getFilePath() == null) {
+			this.loadDefaults();
+			return;
+		}
 
-		if(! File.existsFile(this.getFilePath()))
-			return this.loadDefaults();
+		if(! File.existsFile(this.getFilePath())) {
+			this.loadDefaults();
+			return;
+		}
 
 		// Try to read the File
 		Properties p = new Properties();
@@ -92,20 +95,18 @@ public abstract class UserPref {
 		} catch(Exception e) {
 			e.printStackTrace();
 
-			return loadDefaults();
+			loadDefaults();
 		} finally {
 			this.setProperties(p);
 		}
 
-		return true;
 	}
 
 	/**
 	 * Loads the Default settings
 	 *
-	 * @return - true if the Properties where loaded correctly
 	 */
-	public abstract boolean loadDefaults();
+	public abstract void loadDefaults();
 
 	/**
 	 * Saves the Properties of the User to a File

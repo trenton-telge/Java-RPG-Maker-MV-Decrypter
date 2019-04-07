@@ -1,7 +1,7 @@
-package org.petschko.lib.gui;
+package org.trentontelge.lib.gui;
 
-import com.sun.istack.internal.NotNull;
-import com.sun.istack.internal.Nullable;
+import com.sun.istack.NotNull;
+import com.sun.istack.Nullable;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -26,7 +26,7 @@ import java.awt.event.WindowEvent;
  */
 public abstract class GUI_About extends JDialog {
 	protected JImageLabel imagePanel;
-	protected Component parent;
+	private Component parent;
 	protected JButton closeButton;
 
 	/**
@@ -80,7 +80,7 @@ public abstract class GUI_About extends JDialog {
 	/**
 	 * Window Close Operation
 	 */
-	protected void windowCloseOperation() {
+	private void windowCloseOperation() {
 		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		this.addWindowListener(new WindowAdapter() {
 			@Override
@@ -93,7 +93,7 @@ public abstract class GUI_About extends JDialog {
 	/**
 	 * Creates the close Button
 	 */
-	protected void createCloseButton() {
+	private void createCloseButton() {
 		this.closeButton = new JButton(this.closeButtonText());
 		this.closeButton.addActionListener(this.closeButtonAction());
 	}
@@ -103,7 +103,7 @@ public abstract class GUI_About extends JDialog {
 	 *
 	 * @return - ActionListener
 	 */
-	protected ActionListener closeButtonAction() {
+	private ActionListener closeButtonAction() {
 		return e -> this.hideWindow();
 	}
 
@@ -119,7 +119,7 @@ public abstract class GUI_About extends JDialog {
 	/**
 	 * Hides the Window
 	 */
-	protected void hideWindow() {
+	private void hideWindow() {
 		this.setAlwaysOnTop(false);
 		this.setVisible(false);
 	}

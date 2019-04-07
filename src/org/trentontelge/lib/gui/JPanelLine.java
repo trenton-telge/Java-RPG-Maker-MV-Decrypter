@@ -1,4 +1,4 @@
-package org.petschko.lib.gui;
+package org.trentontelge.lib.gui;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;

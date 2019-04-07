@@ -1,9 +1,9 @@
-package org.petschko.rpgmakermv.decrypt;
+package org.trentontelge.rpgmakermv.decrypt;
 
-import com.sun.istack.internal.NotNull;
-import com.sun.istack.internal.Nullable;
-import org.petschko.lib.Const;
-import org.petschko.lib.File;
+import com.sun.istack.NotNull;
+import com.sun.istack.Nullable;
+import org.trentontelge.lib.Const;
+import org.trentontelge.lib.File;
 
 import java.util.ArrayList;
 

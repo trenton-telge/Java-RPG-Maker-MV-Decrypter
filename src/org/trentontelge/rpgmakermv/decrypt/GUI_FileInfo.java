@@ -1,6 +1,6 @@
-package org.petschko.rpgmakermv.decrypt;
+package org.trentontelge.rpgmakermv.decrypt;
 
-import org.petschko.lib.File;
+import org.trentontelge.lib.File;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
@@ -17,7 +17,6 @@ import javax.swing.JTextField;
  * Notes: Class GUI_FileInfo
  */
 class GUI_FileInfo extends JPanel {
-	private File file = null;
 	private JTextField filePath = new JTextField();
 	private JTextField fileExt = new JTextField();
 	private JPanel realExt = new JPanel();
@@ -33,7 +32,6 @@ class GUI_FileInfo extends JPanel {
 	}
 
 	void setFile(File file) {
-		this.file = file;
 		this.loadFileData();
 	}
 

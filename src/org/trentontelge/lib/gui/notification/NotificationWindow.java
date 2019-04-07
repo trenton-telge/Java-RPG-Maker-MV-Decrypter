@@ -1,7 +1,7 @@
-package org.petschko.lib.gui.notification;
+package org.trentontelge.lib.gui.notification;
 
-import com.sun.istack.internal.NotNull;
-import com.sun.istack.internal.Nullable;
+import com.sun.istack.NotNull;
+import com.sun.istack.Nullable;
 
 import javax.swing.JOptionPane;
 import java.awt.Component;
@@ -19,11 +19,11 @@ import java.io.StringWriter;
  * Notes: Class Notification Window
  */
 abstract class NotificationWindow {
-	public static final int ERROR_LEVEL_FATAL = 4;
+	private static final int ERROR_LEVEL_FATAL = 4;
 	public static final int ERROR_LEVEL_ERROR = 3;
 	public static final int ERROR_LEVEL_WARNING = 2;
-	public static final int ERROR_LEVEL_NOTICE = 1;
-	public static final int ERROR_LEVEL_INFO = 0;
+	private static final int ERROR_LEVEL_NOTICE = 1;
+	private static final int ERROR_LEVEL_INFO = 0;
 
 	private int errorLevel;
 	private String title;
@@ -111,7 +111,7 @@ abstract class NotificationWindow {
 	 *
 	 * @return - Title for this Notification
 	 */
-	public String getTitle() {
+	private String getTitle() {
 		return title;
 	}
 
@@ -120,7 +120,7 @@ abstract class NotificationWindow {
 	 *
 	 * @param title - Title for this Notification
 	 */
-	public void setTitle(@Nullable String title) {
+	private void setTitle(@Nullable String title) {
 		if(title == null)
 			this.setDefaultTitle();
 		else
@@ -184,7 +184,7 @@ abstract class NotificationWindow {
 	/**
 	 * Sets the Title depending on the Error-Level
 	 */
-	protected void setDefaultTitle() {
+	private void setDefaultTitle() {
 		switch(this.errorLevel) {
 			case ERROR_LEVEL_NOTICE:
 				this.title = "Notice";
@@ -209,7 +209,7 @@ abstract class NotificationWindow {
 	 *
 	 * @return - JOptionPane Type
 	 */
-	protected int getJOptionType() {
+	private int getJOptionType() {
 		switch(this.errorLevel) {
 			case ERROR_LEVEL_NOTICE:
 				return JOptionPane.INFORMATION_MESSAGE;
@@ -230,7 +230,7 @@ abstract class NotificationWindow {
 	 *
 	 * @return - Full-Message
 	 */
-	protected String getFullMessage() {
+	private String getFullMessage() {
 		if(this.e != null) {
 			StringWriter stringWriter = new StringWriter();
 			this.e.printStackTrace(new PrintWriter(stringWriter));

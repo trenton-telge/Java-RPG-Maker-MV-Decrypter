@@ -1,7 +1,7 @@
-package org.petschko.rpgmakermv.decrypt;
+package org.trentontelge.rpgmakermv.decrypt;
 
-import com.sun.istack.internal.Nullable;
-import org.petschko.lib.UserPref;
+import com.sun.istack.Nullable;
+import org.trentontelge.lib.UserPref;
 
 import java.util.Properties;
 
@@ -41,10 +41,9 @@ class Preferences extends UserPref {
 	/**
 	 * Load the default-values for Preferences
 	 *
-	 * @return - true on success else false
 	 */
 	@Override
-	public boolean loadDefaults() {
+	public void loadDefaults() {
 		Properties p = new Properties();
 
 		p.setProperty(Preferences.ignoreFakeHeader, "true");
@@ -61,6 +60,5 @@ class Preferences extends UserPref {
 
 		this.setProperties(p);
 
-		return true;
 	}
 }

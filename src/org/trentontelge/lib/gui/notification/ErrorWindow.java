@@ -1,7 +1,8 @@
-package org.petschko.lib.gui.notification;
+package org.trentontelge.lib.gui.notification;
 
-import com.sun.istack.internal.NotNull;
-import com.sun.istack.internal.Nullable;
+
+import com.sun.istack.NotNull;
+import com.sun.istack.Nullable;
 
 /**
  * Author: Peter Dragicevic [peter@petschko.org]

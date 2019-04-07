@@ -1,4 +1,4 @@
-package org.petschko.rpgmakermv.decrypt;
+package org.trentontelge.rpgmakermv.decrypt;
 
 /**
  * Author: Peter Dragicevic [peter@petschko.org]
@@ -17,7 +17,7 @@ class Config {
 	static final String projectPageURL = "https://github.com/Petschko/Java-RPG-Maker-MV-Decrypter";
 	static final String projectBugReportURL = "https://github.com/Petschko/Java-RPG-Maker-MV-Decrypter/issues";
 	static final String projectLicenceURL = "https://github.com/Petschko/Java-RPG-Maker-MV-Decrypter/blob/master/LICENCE";
-	static final String authorImage = "/org/petschko/icons/petschko_icon.png";
+	static final String authorImage = "/org/trentontelge/icons/petschko_icon.png";
 
 	// File-Path-Settings
 	static final String defaultOutputDir = "output";

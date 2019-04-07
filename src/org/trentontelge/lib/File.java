@@ -1,7 +1,8 @@
-package org.petschko.lib;
+package org.trentontelge.lib;
 
-import com.sun.istack.internal.NotNull;
-import com.sun.istack.internal.Nullable;
+import com.sun.istack.NotNull;
+import com.sun.istack.Nullable;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -44,7 +45,7 @@ public class File {
 	 *
 	 * @return - Name of the File without ext
 	 */
-	public String getName() {
+	private String getName() {
 		return name;
 	}
 
@@ -100,6 +101,7 @@ public class File {
 
 		this.setFilePath(this.getFileDirectoryPath() + this.getName() +
 				((newExtension != null) ? "." + newExtension : ""));
+		assert newExtension != null;
 		this.setExtension(newExtension);
 	}
 
@@ -135,7 +137,7 @@ public class File {
 	 *
 	 * @param filePath - New path of the File
 	 */
-	public void setFilePath(@NotNull String filePath) {
+	private void setFilePath(@NotNull String filePath) {
 		this.filePath = filePath;
 	}
 
@@ -194,7 +196,7 @@ public class File {
 		} catch(Exception e) {
 			e.printStackTrace();
 
-			return false;
+			return true;
 		}
 
 		// Check size of the file
@@ -218,12 +220,12 @@ public class File {
 		} catch(Exception e) {
 			e.printStackTrace();
 
-			return false;
+			return true;
 		}
 
 		this.setContent(byteContent);
 
-		return true;
+		return false;
 	}
 
 	/**
@@ -342,8 +344,7 @@ public class File {
 					ArrayList<java.io.File> dirContent = readDirFiles(file);
 
 					// Process Directory-Content
-					for(java.io.File aDirContent : dirContent)
-						fileList.add(aDirContent);
+					fileList.addAll(dirContent);
 				}
 			} else
 				fileList.add(file);
@@ -372,7 +373,7 @@ public class File {
 	 * @return - true if Directory exists else false
 	 */
 	public static boolean existsDir(@NotNull String path) {
-		return existsDir(path, false);
+		return !existsDir(path, false);
 	}
 
 	/**
@@ -387,8 +388,7 @@ public class File {
 
 		if(! dir.exists()) {
 			if(createMissing)
-				if(dir.mkdirs())
-					return true;
+				return dir.mkdirs();
 
 			return false;
 		} else
@@ -401,7 +401,7 @@ public class File {
 	 * @param filePath - Path of the File
 	 * @return - true if File exists else false
 	 */
-	public static boolean existsFile(@NotNull String filePath) {
+	static boolean existsFile(@NotNull String filePath) {
 		return existsFile(filePath, false);
 	}
 
@@ -412,7 +412,7 @@ public class File {
 	 * @param createMissing - true if the function should create missing Files
 	 * @return - true if the File exists (or was successfully created) else false
 	 */
-	public static boolean existsFile(@NotNull String filePath, boolean createMissing) {
+	static boolean existsFile(@NotNull String filePath, boolean createMissing) {
 		java.io.File file = new java.io.File(filePath);
 
 		if(! file.exists()) {
@@ -448,7 +448,7 @@ public class File {
 		java.io.File[] dirContent;
 
 		// Ensure that dir Exists
-		if(!File.existsDir(directoryPath))
+		if(File.existsDir(directoryPath))
 			return false;
 
 		dirContent = dir.listFiles();
@@ -477,7 +477,7 @@ public class File {
 	 * @param directoryPath - Path to the Directory
 	 * @return - true on success else false
 	 */
-	public static boolean deleteDirectory(@NotNull String directoryPath) {
+	private static boolean deleteDirectory(@NotNull String directoryPath) {
 		return File.deleteDirectoryOperation(directoryPath, true, true);
 	}
 

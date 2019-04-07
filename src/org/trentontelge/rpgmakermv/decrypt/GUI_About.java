@@ -1,11 +1,11 @@
-package org.petschko.rpgmakermv.decrypt;
+package org.trentontelge.rpgmakermv.decrypt;
 
-import com.sun.istack.internal.NotNull;
-import com.sun.istack.internal.Nullable;
-import org.petschko.lib.Const;
-import org.petschko.lib.gui.JImageLabel;
-import org.petschko.lib.gui.JLabelExtra;
-import org.petschko.lib.gui.JPanelLine;
+import com.sun.istack.NotNull;
+import com.sun.istack.Nullable;
+import org.trentontelge.lib.Const;
+import org.trentontelge.lib.gui.JImageLabel;
+import org.trentontelge.lib.gui.JLabelExtra;
+import org.trentontelge.lib.gui.JPanelLine;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -30,7 +30,7 @@ import java.awt.HeadlessException;
  *
  * Notes: GUI_About Class
  */
-class GUI_About extends org.petschko.lib.gui.GUI_About {
+class GUI_About extends org.trentontelge.lib.gui.GUI_About {
 	/**
 	 * Creates a new, initially invisible <code>Frame</code> with the
 	 * specified title.

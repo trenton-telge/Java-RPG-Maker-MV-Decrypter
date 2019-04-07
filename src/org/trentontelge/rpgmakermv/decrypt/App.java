@@ -1,7 +1,7 @@
-package org.petschko.rpgmakermv.decrypt;
+package org.trentontelge.rpgmakermv.decrypt;
 
-import org.petschko.lib.Const;
-import org.petschko.lib.gui.notification.ErrorWindow;
+import org.trentontelge.lib.Const;
+import org.trentontelge.lib.gui.notification.ErrorWindow;
 
 /**
  * Author: Peter Dragicevic [peter@petschko.org]
@@ -16,7 +16,7 @@ import org.petschko.lib.gui.notification.ErrorWindow;
 public class App {
 	private static Boolean useGUI = true;
 	private static GUI gui;
-	static String pathToProject;
+	private static String pathToProject;
 	static String outputDir;
 	static Preferences preferences;
 
@@ -48,7 +48,7 @@ public class App {
 				e.printStackTrace();
 			}
 
-			App.exitCMD(0);
+			App.exitCMD();
 		}
 	}
 
@@ -67,7 +67,7 @@ public class App {
 		// Check if help is needed
 		if(args[0].equals("help") || args[0].equals("/?") || args[0].equals("--help")) {
 			App.printHelp();
-			App.exitCMD(0);
+			App.exitCMD();
 		}
 
 		// Set Path to Project
@@ -94,11 +94,10 @@ public class App {
 	/**
 	 * Exit the Program with a Message
 	 *
-	 * @param status - Exit-Status-Code
 	 */
-	private static void exitCMD(int status) {
+	private static void exitCMD() {
 		System.out.println("Done.");
-		System.exit(status);
+		System.exit(0);
 	}
 
 	/**
