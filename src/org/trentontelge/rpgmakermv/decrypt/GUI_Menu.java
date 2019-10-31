@@ -19,7 +19,7 @@ class GUI_Menu extends JMenuBar {
 	// Main Menu-Points
 	private JMenu file;
 	private JMenu options;
-	JMenu decrypt;
+	private JMenu decrypt;
 	private JMenu tools;
 	private JMenu info;
 

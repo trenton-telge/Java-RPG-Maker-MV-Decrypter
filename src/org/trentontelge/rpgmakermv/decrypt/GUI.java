@@ -195,7 +195,7 @@ class GUI {
 		// -- Decrypt
 		// -- Tools
 		// -- Info
-		this.mainMenu.reportABug.addActionListener(GUI_ActionListener.openWebsite(Config.projectBugReportURL));
+		this.mainMenu.reportABug.addActionListener(GUI_ActionListener.openBugReportSite());
 		this.mainMenu.about.addActionListener(
 				e -> this.guiAbout.showWindow()
 		);
@@ -268,10 +268,9 @@ class GUI {
 		 *
 		 * @return the computed result
 		 *
-		 * @throws Exception if unable to compute a result
 		 */
 		@Override
-		protected Void doInBackground() throws Exception {
+		protected Void doInBackground() {
 			// Clear Output-Dir if checked
 			if(Functions.strToBool(App.preferences.getConfig(Preferences.clearOutputDirBeforeDecrypt, "true"))) {
 				this.progressMonitor.setNote("Clearing Output-Directory...");
@@ -308,21 +307,6 @@ class GUI {
 				this.progressMonitor.setNote("Try to detect Encryption-Key...");
 				try {
 					decrypter.detectEncryptionKey(rpgProject.getSystem(), rpgProject.getEncryptionKeyName());
-				} catch(FileSystemException fileSysEx) {
-					// Can't load File
-					fileSysEx.printStackTrace();
-					ErrorWindow errorWindow = new ErrorWindow(
-							"Can't load/read Decryption-Key-File..." + Const.newLine +
-							"File: " + fileSysEx.getFile() + Const.newLine +
-							"See Console for more Details...",
-							ErrorWindow.ERROR_LEVEL_WARNING,
-							false
-					);
-
-					errorWindow.show(mainWindow);
-
-					this.cancel(true);
-					return null;
 				} catch(NullPointerException decryNullEx) {
 					// File-Null-Pointer
 					ErrorWindow errorWindow = new ErrorWindow(
@@ -445,10 +429,9 @@ class GUI {
 		 *
 		 * @return the computed result
 		 *
-		 * @throws Exception if unable to compute a result
 		 */
 		@Override
-		protected Void doInBackground() throws Exception {
+		protected Void doInBackground() {
 			if(File.clearDirectory(this.directoryPath)) {
 				InfoWindow infoWindow = new InfoWindow("Output-Directory cleared!");
 				infoWindow.show(mainWindow);
@@ -542,10 +525,9 @@ class GUI {
 		 *
 		 * @return the computed result
 		 *
-		 * @throws Exception if unable to compute a result
 		 */
 		@Override
-		protected Void doInBackground() throws Exception {
+		protected Void doInBackground() {
 			try {
 				rpgProject = new RPGProject(
 						File.ensureDSonEndOfPath(this.directoryPath),

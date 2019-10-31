@@ -125,13 +125,6 @@ class RPGProject {
 	}
 
 	/**
-	 * Set the EncryptionKeyName to the Default-Value
-	 */
-	void setEncryptionKeyNameToDefault() {
-		this.setEncryptionKeyName("encryptionKey");
-	}
-
-	/**
 	 * Returns true if Project is encrypted
 	 *
 	 * @return - true if Project is encrypted else false

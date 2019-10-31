@@ -58,11 +58,10 @@ class GUI_ActionListener {
 	/**
 	 * Open-Website ActionListener
 	 *
-	 * @param url - Target URL
 	 * @return - Open-Website ActionListener
 	 */
-	static ActionListener openWebsite(String url) {
-		return e -> Functions.openWebsite(url);
+	static ActionListener openBugReportSite() {
+		return e -> Functions.openWebsite(Config.projectBugReportURL);
 	}
 
 	/**

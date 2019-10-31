@@ -128,7 +128,7 @@ class Decrypter {
 	 *
 	 * @return - Version
 	 */
-	String getVersion() {
+	private String getVersion() {
 		return version;
 	}
 
@@ -278,9 +278,8 @@ class Decrypter {
 	 * @param keyName - Key-Name of the Decryption-Key
 	 * @throws JSONException - Key not Found Exception
 	 * @throws NullPointerException - System-File is null
-	 * @throws FileSystemException - Can't load File
 	 */
-	void detectEncryptionKey(File file, String keyName) throws JSONException, NullPointerException, FileSystemException {
+	void detectEncryptionKey(File file, String keyName) throws JSONException, NullPointerException {
 		try {
 			if(file.load())
 				throw new FileSystemException(file.getFilePath(), "", "Can't load File-Content...");
