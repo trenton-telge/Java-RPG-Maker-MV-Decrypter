@@ -5,7 +5,8 @@ Forked from Petschko's RPG-Maker-MV File-Decrypter
 This app is used to decrypt RPGMV resource files or directories that are encrypted with the built-in encryption of RPGMaker MV.
 
 ### Which Files can be decrypted with this Program?
-You can decrypt files with the extension `.rpgmvp`, `.rpgmvm` or `.rpgmvo`
+You can decrypt files with the extension `.rpgmvp`, `.rpgmvm` or `.rpgmvo`.
+This includes most audio, image, and video files present in RPGMaker MV projects.
 
 ## Requirements
 - Java 11 or higher
