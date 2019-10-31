@@ -2,26 +2,19 @@ package org.trentontelge.rpgmakermv.decrypt;
 
 import com.sun.istack.NotNull;
 import org.json.JSONException;
+import org.trentontelge.lib.CellRenderer;
 import org.trentontelge.lib.Const;
 import org.trentontelge.lib.File;
 import org.trentontelge.lib.Functions;
-import org.trentontelge.lib.gui.*;
+import org.trentontelge.lib.gui.JDirectoryChooser;
+import org.trentontelge.lib.gui.JLabelWrap;
 import org.trentontelge.lib.gui.notification.ErrorWindow;
 import org.trentontelge.lib.gui.notification.InfoWindow;
 
-import javax.swing.BorderFactory;
-import javax.swing.JDialog;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.ProgressMonitor;
-import javax.swing.SwingWorker;
-import javax.swing.UIManager;
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.nio.file.FileSystemException;
 import java.util.ArrayList;
 
 /**
@@ -39,7 +32,7 @@ class GUI {
 	private GUI_Menu mainMenu;
 	private JPanel windowPanel = new JPanel(new BorderLayout());
 	private JPanel projectFilesPanel = new JPanel();
-	private JPanel fileList = new JPanel();
+	private JList<java.io.File> fileList = new JList<>();
 	private GUI_About guiAbout;
 	private GUI_FileInfo fileInfo = new GUI_FileInfo();
 	private RPGProject rpgProject;
@@ -119,12 +112,6 @@ class GUI {
 		JLabelWrap filesListText = new JLabelWrap("Please open a RPG-Maker MV Project (\"File\" -> \"Select RPG MV Project\")");
 		filesListText.setColumns(20);
 
-		/*JScrollPane scrollPane = new JScrollPane(
-				this.fileList,
-				ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
-				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED
-		);*/
-
 		// Design stuff
 		this.projectFilesPanel.setLayout(new BorderLayout());
 		this.projectFilesPanel.setBorder(BorderFactory.createTitledBorder("Project-Files"));
@@ -157,8 +144,25 @@ class GUI {
 
 					if(dirChooser.getSelectedFile() != null && choose == JDirectoryChooser.APPROVE_OPTION) {
 						App.preferences.setConfig(Preferences.lastRPGDir, dirChooser.getCurrentDirectory().getPath());
-
 						this.openRPGProject(dirChooser.getSelectedFile().getPath(), true);
+						EventQueue.invokeLater(() -> {
+							try {
+								fileList = new JList<>(new java.io.File(dirChooser.getSelectedFile().getPath()).listFiles());
+							} catch (Exception f) {
+								f.printStackTrace();
+							}
+							assert fileList != null;
+							fileList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+							fileList.setCellRenderer(new CellRenderer());
+							fileList.setLayoutOrientation(JList.HORIZONTAL_WRAP);
+							fileList.setName("List");
+							fileList.setVisibleRowCount(-1);
+							fileList.setSize(300, 300);
+							projectFilesPanel.removeAll();
+							projectFilesPanel.add(new JScrollPane(fileList), BorderLayout.CENTER);
+							projectFilesPanel.validate();
+							projectFilesPanel.setVisible(true);
+						});
 					}
 				}
 		);
@@ -494,16 +498,6 @@ class GUI {
 	private class GUI_OpenRPGDir extends SwingWorker<Void, Void> {
 		private String directoryPath;
 		private boolean showInfoWindow;
-
-		/**
-		 * GUI_OpenRPGDir constructor
-		 *
-		 * @param directoryPath - Path of the Directory
-		 */
-		GUI_OpenRPGDir(String directoryPath) {
-			this.directoryPath = directoryPath;
-			this.showInfoWindow = false;
-		}
 
 		/**
 		 * GUI_OpenRPGDir constructor
